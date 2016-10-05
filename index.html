@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Sistema de dispersiones</title>
+        <!-- Etilos generales -->
+		    <link rel="stylesheet" type="text/css" href="css/body_style.css" />
+		    <!-- Estilos menu -->
+		    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+        <!-- Límites de los campos de texto -->
+        <script type="text/javascript" src="js/limites.js"></script>
+	  </head>
+    <body>
+    	  <div id="principal">
+    		    
+            <div id="cabecera">
+	    	    </div>
+	    	    
+            <div id="contenido">
+	        	    <!-- Inicio del ontenedor principal -->
+				        <div id="form_login">
+                    <form method="POST" action="php/procesar.php" name="formulario">
+					              <!-- Título -->
+					              <h1>INGRESA TUS DATOS DE USUARIO</h1>
+
+					              <!-- Inicio del contenedor del formulario -->
+   					            <div class="form">
+    					              <!-- Inicio de la tabla que contiene el formulario -->
+   						              <table border="0">
+   							                <tr>
+     							                  <td><label for="nomusuario">Usuario:</label></td>
+          						              <td><input type="text" style="width: 400px" name="nom_usuario" id="nom_usuario" maxlength="50" onKeyUp="soloMayusculas(this.value,this.id)"></td>
+     						                </tr>
+   							                <tr>
+     							                  <td><br /><label for="pass">Password:</label></td>
+          						              <td><br /><input type="password" style="width: 400px" name="pass" id="pass" maxlength="50" onKeyUp="soloMayusculas(this.value,this.id)"></td>
+     						                </tr>
+      					            <!-- Fin de la tabla que contiene el formulario -->
+  						              </table> 
+   					            <!-- Fin del contenedor del formulario -->                				
+					              </div>
+                        <br>
+                        <input type="submit" value="Ingresar">
+                    </form>
+				        <!-- Fin del contenedor principal -->    
+				        </div>
+	    	    </div>
+
+	    	    <div id="pie">
+	        	    <p>&copy; 2015 by R-Net Systems. Sitio creado por Luis Eduardo Callejas.</p>
+	    	    </div>
+
+		    </div>
+    </body>
+</html>

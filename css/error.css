@@ -1,0 +1,125 @@
+body{
+	/*background: url("../imagenes/fondo.jpg") no-repeat;
+    background-attachment: fixed;*/
+    background: url(../imagenes/error.jpg) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /*background-size: 1920px 1080px;*/
+    /* color: #FFFFFF; */
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    letter-spacing: -.05em;
+}
+#principal{
+    margin: auto;
+    width: 1014px;
+}
+#cabecera{
+    position: relative;
+    height: 50px;
+    width: 1014px;
+}
+#contenido{
+    min-height: 576px;
+    width: 1014px;
+}
+#contenido #form_login{
+    margin: auto;
+    width: 524px;
+}
+#form_login{
+    padding-top: 150px;
+}
+#pie{
+    font-size: .9em;
+    height: 45px;
+    width: 1014px;
+}
+#pie p{
+    margin-left: 20px;
+}
+#contenido #logoFondo{
+    width: 100%;
+    height: 75%;
+    background-image: url("../imagenes/logo.png");
+    background-repeat: no-repeat;
+    background-size: 680px 250px;
+    background-position: center;
+}
+#myTable td{
+    width: 150px;
+    max-width: 150px;
+    height: 20px;
+}
+#myTableTotal td{
+    width: 150px;
+    max-width: 150px;
+    height: 20px;
+}
+#myTableNominas td{
+    width: 150px;
+    max-width: 150px;
+    height: 20px;
+}
+#myTableDirecto td{
+    width: 150px;
+    max-width: 150px;
+    height: 20px;
+}
+#myTableTotalNominas td{
+    width: 150px;
+    max-width: 150px;
+    height: 20px;
+}
+#myTableTotalDirecto td{
+    width: 150px;
+    max-width: 150px;
+    height: 20px;
+}
+
+#myTableFin td{
+    width: 150px;
+    max-width: 150px;
+    height: 20px;
+}
+
+#myTableMuestraFinales td{
+    width: 200px;
+    max-width: 200px;
+    height: 20px;
+}
+#noMov{
+    width: 50px;
+}
+#empMov{
+    width: 200px;
+}
+.fechaMov{
+    text-align: center;
+    width: 150px;
+}
+.horaMov{
+    text-align: center;
+    width: 100px;
+}
+.botnMov{
+    text-align: center;
+    width: 100px;
+}
+.montMov{
+    text-align: right;
+    width: 100px;
+}
+.izquierda{
+    float: left;
+    margin-right: 20px;
+}
+.derecha{
+    float: right;
+    margin-right: 40px;
+}
+#checkEntrada{
+    margin-top: 70px;
+}

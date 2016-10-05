@@ -1,0 +1,165 @@
+<head>
+  <meta charset="utf-8">
+  <title>Nuevo Proceso</title>
+  <!-- <link rel="stylesheet" href="../jQuery/jquery-ui.min.css"> -->
+  <script src="../jQuery/jquery-2.1.3.min.js"></script>
+  <script src="../jQuery/jquery-ui.min.js"></script>
+  <!-- <style>
+    body { font-size: 62.5%; }
+    label, input { display:block; }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    h1 { font-size: 1.2em; margin: .6em 0; }
+    div#users-contain { width: 350px; margin: 20px 0; }
+    div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+    div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em; }
+  </style> -->
+  <script>
+  $(function() {
+    var dialog, form,
+ 
+      empresa = $( "#empresa" ),
+      monto = $( "#monto" ),
+      tipo = $( "#tipo" ),
+      banco = $( "#banco" ),
+      cuenta = $( "#cuenta" ),
+      allFields = $( [] ).add( empresa ).add( monto ).add( tipo ).add( banco ).add( cuenta ),
+      tips = $( ".validateTips" );
+ 
+    function updateTips( t ) {
+      tips
+        .text( t )
+        .addClass( "ui-state-highlight" );
+      setTimeout(function() {
+        tips.removeClass( "ui-state-highlight", 1500 );
+      }, 500 );
+    }
+ 
+    function checkLength( o, n, min, max ) {
+      if ( o.val().length > max || o.val().length < min ) {
+        o.addClass( "ui-state-error" );
+        updateTips( "El numero de caractéres de " + n + " debe estar entre " +
+          min + " y " + max + "." );
+        return false;
+      } else {
+        return true;
+      }
+    }
+ 
+    function checkRegexp( o, regexp, n ) {
+      if ( !( regexp.test( o.val() ) ) ) {
+        o.addClass( "ui-state-error" );
+        updateTips( n );
+        return false;
+      } else {
+        return true;
+      }
+    }
+ 
+    function addUser() {
+      var valid = true;
+      allFields.removeClass( "ui-state-error" );
+ 
+      valid = valid && checkLength( empresa, "empresa", 3, 50 );
+      valid = valid && checkLength( monto, "monto", 1, 80 );
+      valid = valid && checkLength( tipo, "tipo", 3, 50 );
+      valid = valid && checkLength( banco, "banco", 3, 50 );
+      valid = valid && checkLength( cuenta, "cuenta", 7, 12 );
+ 
+      valid = valid && checkRegexp( empresa, /^([0-9a-z_\s])+$/i, "Empresa debe contener a-z, 0-9, y espacios." );
+      valid = valid && checkRegexp( monto, /^([0-9])+$/, "Monto solo puede contener : a-z 0-9" );
+      valid = valid && checkRegexp( tipo, /^[a-z]([0-9a-z_\s])+$/i, "Tipo debe contener a-z, 0-9, y espacios." );
+      valid = valid && checkRegexp( banco, /^[a-z]([0-9a-z_\s])+$/i, "Banco debe contener a-z, 0-9, y espacios." );
+      valid = valid && checkRegexp( cuenta, /^([0-9])+$/, "Cuenta solo puede contener : a-z 0-9" );
+ 
+      if ( valid ) {
+        $( "#users tbody" ).append( "<tr>" +
+          "<td>" + empresa.val() + "</td>" +
+          "<td>" + monto.val() + "</td>" +
+          "<td>" + tipo.val() + "</td>" +
+          "<td>" + banco.val() + "</td>" +
+          "<td>" + cuenta.val() + "</td>" +
+        "</tr>" );
+        dialog.dialog( "close" );
+      }
+      return valid;
+    }
+ 
+    dialog = $( "#dialog-form" ).dialog({
+      autoOpen: false,
+      height: 300,
+      width: 350,
+      modal: true,
+      buttons: {
+        "Aceptar": addUser,
+        Cancelar: function() {
+          dialog.dialog( "close" );
+        }
+      },
+      close: function() {
+        form[ 0 ].reset();
+        allFields.removeClass( "ui-state-error" );
+      }
+    });
+ 
+    form = dialog.find( "form" ).on( "submit", function( event ) {
+      event.preventDefault();
+      addUser();
+    });
+ 
+    $( "#create-user" ).button().on( "click", function() {
+      dialog.dialog( "open" );
+    });
+  });
+  </script>
+</head>
+<body>
+ 
+<div id="dialog-form" title="Create new user">
+  <form>
+    <fieldset>
+      <!-- <input type="text" name="empresa" id="empresa" placeholder="Empresa" class="text ui-widget-content ui-corner-all"> -->
+      <select name="empresa" id="empresa">
+          <option>Empresa1</option>
+          <option>Empresa2</option>
+          <option>Empresa3</option>
+      </select><br><br>
+      <input type="text" name="monto" id="monto" placeholder="Monto" class="text ui-widget-content ui-corner-all">
+      <!-- <input type="text" name="tipo" id="tipo" placeholder="Tipo" class="text ui-widget-content ui-corner-all"> -->
+      <select name="tipo" id="tipo">
+          <option>Transferencia</option>
+          <option>Efectivo</option>
+      </select><br><br>
+      <input type="text" name="banco" id="banco" placeholder="Banco" class="text ui-widget-content ui-corner-all">
+      <input type="text" name="cuenta" id="cuenta" placeholder="Cuenta" class="text ui-widget-content ui-corner-all">
+ 
+      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
+ 
+ 
+<div id="users-contain" class="ui-widget">
+  <h1>Empresas:</h1>
+  <table id="users" class="ui-widget ui-widget-content">
+    <thead>
+      <tr class="ui-widget-header ">
+        <th>Empresa</th>
+        <th>Monto</th>
+        <th>Tipo</th>
+        <th>Banco</th>
+        <th>Cuenta</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+</div>
+<button id="create-user">Ingresar nueva Empresa</button>
+ 
+ 
+</body>
